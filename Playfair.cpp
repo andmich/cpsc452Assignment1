@@ -85,12 +85,12 @@ string Playfair::encrypt(const string& plaintext)
 		bool found = false;
 		while (!found)
 		{
-            if (playMatrix[row][col] == temp.at(0))
+            if (playMatrix[row][col] == toupper(temp.at(0)))
             {
                 firstRow = row;
                 firstCol = col;
             }
-            if (playMatrix[row][col] == temp.at(1))
+            if (playMatrix[row][col] == toupper(temp.at(1)))
             {
                 secondRow = row;
                 secondCol = col;
