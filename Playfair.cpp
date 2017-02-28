@@ -71,16 +71,42 @@ void Playfair::setKey(const string& key)
 string Playfair::encrypt(const string& plaintext)
 {
 	string cipherText;
-	
+
 	int j = 2;
+    int row = 0;
+    int col = 0;
+    int firstRow = -1;
+    int firstCol = -1;
+    int secondRow = -1;
+    int secondCol = -1;
 	for (int i = 0; i < plaintext.length() - 2; i+=2)
 	{
 		string temp = plaintext.substr(i, j);
 		int found = 0;
 		while (found > 0)
 		{
-			found = plaintext()
+            if (playMatrix[row][col] == temp.at(0))
+            {
+                firstRow = row;
+                firstCol = col;
+            }
+            if (playMatrix[row][col] == temp.at(1))
+            {
+                secondRow = row;
+                secondCol = col;
+            }
+            col++;
+            if (col == 5)
+    		{
+    			row++;
+    			col = 0;
+    		}
+            if (firstRow >= 0 && secondRow >= 0)
+                found = true;
 		}
+
+        strcat(cipherText, playMatrix[firstRow][secondCol]);
+        strcat(cipherText, playMatrix[secondRow][firstCol]);
 	}
 	return "";
 }
