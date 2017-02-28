@@ -82,8 +82,8 @@ string Playfair::encrypt(const string& plaintext)
 	for (int i = 0; i < plaintext.length() - 2; i+=2)
 	{
 		string temp = plaintext.substr(i, j);
-		int found = 0;
-		while (found > 0)
+		bool found = false;
+		while (!found)
 		{
             if (playMatrix[row][col] == temp.at(0))
             {
