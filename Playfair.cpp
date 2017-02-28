@@ -105,8 +105,7 @@ string Playfair::encrypt(const string& plaintext)
                 found = true;
 		}
 
-        strcat(cipherText, playMatrix[firstRow][secondCol]);
-        strcat(cipherText, playMatrix[secondRow][firstCol]);
+        cipherText = cipherText + playMatrix[firstRow][secondCol] + playMatrix[secondRow][secondCol];
 	}
 	return "";
 }
