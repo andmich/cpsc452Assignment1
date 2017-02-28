@@ -1,95 +1,91 @@
 #include "Playfair.h"
 
-bool Playfair::setKey(const string& key)
+void Playfair::setKey(const string& key)
 {
-    queue<char> temp;
+	//initialize playMatrix
+	for (int x = 0; x < 5; x++)
+	{
+		for (int y = 0; y < 5; y++)
+		{
+			playMatrix[x][y] = ' ';
+		}
+	}
 
-    int keyPos = 0;
-    for (int row = 0; row < 5; row++)
-    {
-        for (int col = 0; col < 5; col++)
-        {
-            //if keyPos isnt equal to key length the continue
-            //inserting key into playMatrix otherwise
-            //use temp queue to populate matrix
-            if (keyPos != key.length())
-            {
-                //if element in playMatrix is not null then
-                //see if character in key is in the playMatrix
-                //if not then populate matrix with character from key
-                //and push the element replaced into temp queue
-                if (playMatrix[row][col] != ' ')
-                {
-                    int i = row;
-                    int j = col;
-                    bool done = false;
+	string alpha = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
 
-                    //store char in key
-                    char keyChar = ' ';
+	int keyPos = 0;
+	int row = 0;
+	int col = 0;
+	int j = 0;
 
-                    if (key.at(keyPos) == 'J' || key.at(keyPos) == 'j')
-                    {
-                        keyChar = 'I';
-                    }
-                    else
-                        keyChar = toupper(key.at(keyPos));
+	char keyChar = ' ';
+	while (j < key.length())
+	{
+		bool found = false;
+		int i = 0;
 
-                    while (!done && i < 5)
-                    {
-                        if (playMatrix[i][j] == keyChar)
-                        {
-                            playMatrix[i][j] = ' ';
-                            done = true;
-                        }
-                        else
-                        {
-                            j++;
-                        }
+		if (key.at(j) == 'j' || key.at(j) == 'J')
+			keyChar = 'I';
+		else
+			keyChar = toupper(key.at(j));
+		while (!found)
+		{
+			if (alpha.at(i) == keyChar)
+			{
+				alpha.at(i) = ' ';
+				found = true;
+			}
+			i++;
+		}
+		if (col == 5)
+		{
+			row++;
+			col = 0;
+		}
+		if (found)
+		{
+			playMatrix[row][col] = toupper(key.at(j));
+			col++;
+			j++;
+		}
+	}
 
-                        if (j == 5)
-                        {
-                            i++;
-                            j = 0;
-                        }
-                    }
+	j = 0;
+	while (j < alpha.length())
+	{
+		if (alpha.at(j) != ' ')
+		{
+			playMatrix[row][col] = alpha.at(j);
+			col++;
+		}
+		j++;
 
-                    if (done)
-                    {
-                        temp.push(playMatrix[row][col]);
-                        playMatrix[row][col] = toupper(key.at(keyPos));
-                        keyPos++;
-                    }
-                }
-                else
-                {
-                    playMatrix[row][col] = toupper(key.at(keyPos));
-                    keyPos++;
-                }
-            }
-            else
-            {
-                //use vector
-            }
-        }
-    }
-
-    for (int row = 0; row < 5; row++)
-    {
-        for (int col = 0; col < 5; col++)
-        {
-            cout << playMatrix[row][col];
-        }
-        cout << endl;
-    }
-    return false;
+		if (col == 5)
+		{
+			row++;
+			col = 0;
+		}
+	}
 }
 
 string Playfair::encrypt(const string& plaintext)
 {
-    return "";
+	string cipherText;
+	
+	int j = 2;
+	for (int i = 0; i < plaintext.length() - 2; i+=2)
+	{
+		string temp = plaintext.substr(i, j);
+		int found = 0;
+		while (found > 0)
+		{
+			found = plaintext()
+		}
+	}
+	return "";
 }
 
 string Playfair::decrypt(const string& ciphertext)
 {
-    return "";
+	return "";
 }

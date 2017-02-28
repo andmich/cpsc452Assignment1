@@ -25,7 +25,7 @@ int main(int argc, char** argv)
 	}
 
 	/* Set the encryption key */
-	cipher->setKey("jumping");
+	cipher->setKey("Andrew");
 
 	/* Perform encryption */
 	string cipherText = cipher->encrypt("hello world");

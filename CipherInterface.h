@@ -11,7 +11,7 @@ class CipherInterface
     public:
         CipherInterface(){}
 
-        virtual bool setKey(const string& theKey) { return false; }
+        virtual void setKey(const string& theKey) { }
 
         virtual string encrypt(const string& plaintext) { return ""; }
 
